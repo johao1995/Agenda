@@ -1,0 +1,31 @@
+{%  extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="text-center mt-4">{{title}}</h1>
+    <div class="row ">
+        <div class="col-4"></div>
+        <div class="col-5">
+            <a class="" href="{% url 'contact:list-contact' %}">Atras</a>
+            <div class="card border-secondary shadow-lg mt-3" style="width: 18rem;">
+                <img src="{% static 'img/usuario.jpg' %}" class="card-img-top" width="250" height="250" alt="...">
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{contactos.name}} {{contactos.last_name}}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Telefono: {{contactos.phone}}</li>
+                  <li class="list-group-item">Celular: {{contactos.mobile}}</li>
+                  <li class="list-group-item">Correo: {{contactos.email}}</li>
+                  <li class="list-group-item">Fecha Registro: {{contactos.date}}</li>
+                </ul>
+                {% comment %}
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+                {% endcomment %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

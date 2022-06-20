@@ -1,0 +1,21 @@
+{%  extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="text-center mt-4">{{title}}</h1>
+    <div class="row ">
+        <div class="col-4"></div>
+        <div class="col-5">
+            <a  href="{% url 'contact:list-contact'%}">Atras</a>
+                <div class="card">
+                    <form action="{% url 'contact:create-contact'%}" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            {{form.as_p}}
+                            <button type="submit" class="btn btn-primary w-100">Crear</button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+{% endblock %}

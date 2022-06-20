@@ -1,0 +1,49 @@
+{% extends 'layout/base.html' %}
+{% block title %}contact{% endblock %}
+{% block content %}
+<h1 class="text-center mt-3 display-4">Lista de Contactos</h1>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <form method="GET">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="name" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-dark" type="submit" id="button-addon2">Button</button>
+            </div>
+        </form>
+        <div>
+            <a class="btn btn-primary" href="#">Ver todos</a>
+            <a class="btn btn-success" href="{% url 'contact:create-contact' %}">Agregar</a>
+        </div>
+        <table class="table table-bordered mt-3 text-center">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <td>Nombre</td>
+                    <td>Observacion</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if contactos|length > 0 %}
+                    {% for c in contactos %}
+                        <tr>
+                            <td>{{c.name}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{% url 'contact:detail-contact' c.id %}">Ver</a>
+                                <a class="btn btn-warning" href="{% url 'contact:edit-contact' c.id %}">Update</a>
+                                <a class="btn btn-danger" href="{% url 'contact:delete-contact' c.id %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <div class="mt-3">
+                        <p class="alert alert-danger">NO existe Contactos</p>
+                    </div>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
